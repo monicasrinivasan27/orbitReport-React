@@ -1,13 +1,30 @@
 import Buttons from "./components/Buttons";
 import Table from "./components/Table";
+import Banner from "./components/Banner";
+import satData from "./components/satData";
+import { useState } from 'react';
 
 
 function App() {
+    const [sat, setSat] = useState(satData);
+    const displaySats = [...new Set(satData.map((data) => data.orbitType))];
+    // code continues ...
+    const filterByType = (currentType) => {
+      const displaySats = satData.filter((newSatDisplay) => {
+         return newSatDisplay.orbitType === currentType;
+      });
+      setSat(displaySats);
+    };
   return (
-    <div>
-      <Buttons />
-      <Table />
-    </div>
+    <>
+    <Banner />
+    <Buttons
+      filterByType={filterByType}
+      setSat={setSat}
+      displaySats={displaySats}
+    />
+    <Table sat={sat} />
+  </>
   );
 }
 
