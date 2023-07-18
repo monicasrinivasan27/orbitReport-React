@@ -20,5 +20,5 @@ const Buttons = (props) => {
     </div>
   );
 }
+
 export default Buttons;
-/*Inside the <button> tag, create an onClick function that points to setSat. Pass satData to setSat.*/
